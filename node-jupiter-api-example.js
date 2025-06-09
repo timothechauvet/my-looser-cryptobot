@@ -6,6 +6,7 @@ import bs58 from 'bs58';
 let lastPrice = 0;
 let goingDownCount = 0;
 let goingUpCount = 0;
+var multiplicator = 1;
 
 async function performSwap(input_mint, output_mint, amount) {
     try {
