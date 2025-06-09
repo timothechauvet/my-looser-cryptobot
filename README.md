@@ -29,6 +29,7 @@ Then create a `.env` file with
 
 ```
 PRIVATE_KEY=your_wallet_private_key
+MULTIPLICATOR=integer
 SOLANA_ENDPOINT=https://api.mainnet-beta.solana.com
 ```
 

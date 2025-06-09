@@ -99,9 +99,9 @@ async function trackPriceAndSwap() {
 
       // Swap based on streaks
       if (goingDownCount > 0 && currentPrice != lastPrice) {
-        await performSwap('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', 'So11111111111111111111111111111111111111112', Math.min(goingDownCount, 5) * 1_000_000);
+        await performSwap('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', 'So11111111111111111111111111111111111111112', Math.min(goingDownCount, 5) * 1_000_000 * multiplicator);
       } else if (goingUpCount > 0 && currentPrice != lastPrice) {
-        const amountInLamports = Math.floor((Math.min(goingUpCount, 5) * 1 / currentPrice) * 1_000_000_000);
+        const amountInLamports = Math.floor((Math.min(goingUpCount, 5) * 1 / currentPrice) * 1_000_000_000 * multiplicator);
         await performSwap('So11111111111111111111111111111111111111112', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v', amountInLamports);
       }
 
@@ -112,5 +112,6 @@ async function trackPriceAndSwap() {
   }
 }
 
+multiplicator = parseInt(process.env.MULTIPLICATOR) || 1;
 lastPrice = await getCurrentPrice(200);
 setInterval(trackPriceAndSwap, 1800000);
